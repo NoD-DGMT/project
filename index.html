@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detecting Non-Optimal Decisions of Embodied Agents via Diversity-Guided Metamorphic Testing</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #fafafa;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .title {
+            font-size: 2.8em;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            color: #666;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        .links {
+            margin-bottom: 40px;
+        }
+
+        .links a {
+            display: inline-block;
+            margin: 0 15px;
+            padding: 8px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .links a:hover {
+            background-color: #0056b3;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .section p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .method-box {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #007bff;
+        }
+
+        .method-box h3 {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+
+        .method-box ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .method-box li {
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .highlight h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .results-list {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-list ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .results-list li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        .contributions {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+
+        .contributions ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .contributions li {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        .figure-container {
+            text-align: center;
+            margin: 30px 0;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .figure-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .figure-container figcaption {
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .pdf-container {
+            text-align: center;
+            margin: 30px 0;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .pdf-container embed {
+            width: 100%;
+            height: 600px;
+            border-radius: 4px;
+        }
+
+        .pdf-container figcaption {
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .title {
+                font-size: 2.2em;
+            }
+
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .links a {
+                display: block;
+                margin: 10px 0;
+            }
+
+            .pdf-container embed {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Detecting Non-Optimal Decisions of Embodied Agents via Diversity-Guided Metamorphic
+                Testing</h1>
+            <div class="links">
+                <a href="#">Paper</a>
+                <a href="#">Code</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Abstract</h2>
+            <p>
+                As embodied agents advance toward real-world deployment, ensuring optimal decisions becomes critical for
+                resource-constrained applications.
+                Current evaluation methods focus solely on functional correctness, overlooking the non-functional
+                optimality of generated plans.
+                This gap can lead to significant performance degradation and resource waste. We identify and formalize
+                the problem of Non-optimal Decisions (NoDs),
+                where agents complete tasks successfully but inefficiently. We present a systematic framework for
+                detecting NoDs in embodied agent task planning via diversity-guided metamorphic testing.
+                Our key insight is that optimal planners should exhibit invariant behavioral properties under specific
+                transformations. We design four novel metamorphic
+                relations capturing fundamental optimality properties: position detour suboptimality, action optimality
+                completeness, condition refinement monotonicity,
+                and scene invariance. To maximize detection efficiency, we introduce a diversity-guided filter that
+                actively selects test cases exploring different
+                violation categories, avoiding redundant evaluations while ensuring comprehensive diversity coverage.
+                Extensive experiments on the AI2-THOR simulator with four state-of-the-art planning models demonstrate
+                our framework achieves violation detection rates
+                ranging from 18.7% to 67.2% across different task complexities, with our diversity-guided filter
+                enhancing detection efficiency by 4.3% on average,
+                significantly outperforming four baseline methods by 40.7% in average detection rates.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2>Method</h2>
+            <p>
+                Our framework consists of three main components: metamorphic relations design, diversity-guided
+                filtering,
+                and violation detection. The overall architecture is shown below.
+            </p>
+            <div class="figure-container">
+                <img src="figs/framework.png"
+                    alt="Overall framework of our diversity-guided metamorphic testing approach">
+                <figcaption>Figure 1: Overall framework of our diversity-guided metamorphic testing approach
+                </figcaption>
+            </div>
+
+            <div class="method-grid">
+                <div class="method-box">
+                    <h3>Metamorphic Relations</h3>
+                    <ul>
+                        <li><strong>Position Detour Suboptimality:</strong> Detects inefficient path planning through
+                            detour analysis</li>
+                        <li><strong>Action Optimality Completeness:</strong> Identifies suboptimal action sequences and
+                            alternatives</li>
+                        <li><strong>Condition Refinement Monotonicity:</strong> Evaluates sensitivity to environmental
+                            condition changes</li>
+                        <li><strong>Scene Invariance Property:</strong> Tests robustness to task-irrelevant scene
+                            modifications</li>
+                    </ul>
+                </div>
+                <div class="method-box">
+                    <h3>Diversity-Guided Filter</h3>
+                    <ul>
+                        <li><strong>Position Filter:</strong> Maximizes perpendicular distance to original trajectory
+                        </li>
+                        <li><strong>Action Filter:</strong> Leverages LLMs for semantic diversity selection</li>
+                        <li><strong>Condition Filter:</strong> Maximizes refinement divergence from original conditions
+                        </li>
+                        <li><strong>Scene Filter:</strong> Minimizes scene similarity while maintaining task-irrelevance
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Four Types of Metamorphic Relations</h2>
+            <p>
+                We design four novel metamorphic relations that capture fundamental optimality properties in embodied
+                agent behaviors.
+            </p>
+            <div class="figure-container">
+                <img src="figs/four-MRs.png" alt="Four types of metamorphic relations for NoD detection">
+                <figcaption>Figure 2: Four types of metamorphic relations for NoD detection</figcaption>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Case Study Examples</h2>
+            <p>
+                The following examples demonstrate how our framework detects different types of non-optimal decisions
+                across various mutation scenarios.
+            </p>
+            <div class="figure-container">
+                <img src="figs/case_v5.png"
+                    alt="Case study examples showing violation detection across different mutation types">
+                <figcaption>Figure 3: Case study examples showing violation detection across different mutation types
+                </figcaption>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
