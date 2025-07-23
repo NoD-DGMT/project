@@ -27,7 +27,7 @@
         }
 
         .title {
-            font-size: 2.8em;
+            font-size: 2.4em;
             font-weight: 700;
             color: #1a1a1a;
             margin-bottom: 20px;
@@ -250,21 +250,20 @@
                 Current evaluation methods focus solely on functional correctness, overlooking the non-functional
                 optimality of generated plans.
                 This gap can lead to significant performance degradation and resource waste. We identify and formalize
-                the problem of Non-optimal Decisions (NoDs),
-                where agents complete tasks successfully but inefficiently. We present a systematic framework for
-                detecting NoDs in embodied agent task planning via diversity-guided metamorphic testing.
+                the problem of Non-optimal Decisions (NoDs), where agents complete tasks successfully but inefficiently.
+                We present NoD-DGMT, the first systematic framework for detecting NoDs in embodied agent task planning
+                via diversity-guided metamorphic testing.
                 Our key insight is that optimal planners should exhibit invariant behavioral properties under specific
-                transformations. We design four novel metamorphic
-                relations capturing fundamental optimality properties: position detour suboptimality, action optimality
-                completeness, condition refinement monotonicity,
-                and scene invariance. To maximize detection efficiency, we introduce a diversity-guided filter that
-                actively selects test cases exploring different
-                violation categories, avoiding redundant evaluations while ensuring comprehensive diversity coverage.
+                transformations.
+                We design four novel metamorphic relations capturing fundamental optimality properties: position detour
+                suboptimality, action optimality completeness, condition refinement monotonicity, and scene invariance.
+                To maximize detection efficiency, we introduce a diversity-guided filter that actively selects test
+                cases exploring different violation categories, avoiding redundant evaluations while ensuring
+                comprehensive diversity coverage.
                 Extensive experiments on the AI2-THOR simulator with four state-of-the-art planning models demonstrate
-                our framework achieves violation detection rates
-                ranging from 18.7% to 67.2% across different task complexities, with our diversity-guided filter
-                enhancing detection efficiency by 4.3% on average,
-                significantly outperforming four baseline methods by 40.7% in average detection rates.
+                NoD-DGMT achieves violation detection rates ranging from 18.7% to 67.2% across different task
+                complexities, with our diversity-guided filter enhancing detection efficiency by 4.3% on average,
+                significantly outperforming four baseline methods with 5× higher detection rates.
             </p>
         </div>
 
