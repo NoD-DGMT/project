@@ -206,6 +206,44 @@
             color: #666;
             font-size: 0.95em;
         }
+        
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .results-table th,
+        .results-table td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .results-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #1a1a1a;
+            font-size: 0.95em;
+        }
+
+        .results-table td {
+            color: #555;
+            font-size: 0.9em;
+        }
+
+        .results-table .best-result {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .results-table tr:hover {
+            background-color: #f8f9fa;
+        }
 
         @media (max-width: 768px) {
             .container {
@@ -228,6 +266,15 @@
             .pdf-container embed {
                 height: 400px;
             }
+
+            .results-table {
+                font-size: 0.8em;
+            }
+
+            .results-table th,
+            .results-table td {
+                padding: 8px 10px;
+            }
         }
     </style>
 </head>
@@ -239,6 +286,7 @@
                 Testing</h1>
             <div class="links">
                 <a href="https://anonymous.4open.science/r/nod-dgmt-spoc-66FE/">Code</a>
+                <a href="#results" onclick="scrollToResults()">Results</a>
             </div>
         </div>
 
@@ -322,6 +370,80 @@
             </div>
         </div>
 
+        <div class="section" id="results">
+            <h2>Results</h2>
+            <p>
+                We conduct experiments covering three categories (i.e., property-based testing, random testing, and
+                traditional MT) and six representative baselines.
+            </p>
+            <table class="results-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th class="best-result">NoD-DGMT</th>
+                        <th>PBT-SP</th>
+                        <th>PBT-NR</th>
+                        <th>RT-GF</th>
+                        <th>RT-NAI</th>
+                        <th class="best-result">MT-[3]</th>
+                        <th class="best-result">MT-[2]</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>DINOv2</strong></td>
+                        <td class="best-result">26.5%</td>
+                        <td>8.6%</td>
+                        <td>3.3%</td>
+                        <td>1.1%</td>
+                        <td>0.0%</td>
+                        <td class="best-result">19.8%</td>
+                        <td class="best-result">14.1%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SigLIP</strong></td>
+                        <td class="best-result">31.2%</td>
+                        <td>12.0%</td>
+                        <td>3.8%</td>
+                        <td>0.0%</td>
+                        <td>0.0%</td>
+                        <td class="best-result">26.4%</td>
+                        <td class="best-result">17.5%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SigLIP-Nav</strong></td>
+                        <td class="best-result">33.0%</td>
+                        <td>14.3%</td>
+                        <td>6.7%</td>
+                        <td>0.0%</td>
+                        <td>0.0%</td>
+                        <td class="best-result">28.9%</td>
+                        <td class="best-result">25.2%</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SigLIP-Det</strong></td>
+                        <td class="best-result">37.0%</td>
+                        <td>13.8%</td>
+                        <td>6.8%</td>
+                        <td>7.8%</td>
+                        <td>12.7%</td>
+                        <td class="best-result">33.9%</td>
+                        <td class="best-result">24.3%</td>
+                    </tr>
+                    <tr style="background-color: #f0f8ff;">
+                        <td><strong>Average</strong></td>
+                        <td class="best-result">31.9%</td>
+                        <td>12.2%</td>
+                        <td>5.1%</td>
+                        <td>2.2%</td>
+                        <td>3.2%</td>
+                        <td class="best-result">27.3%</td>
+                        <td class="best-result">20.3%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <div class="section">
             <h2>Case Study Examples</h2>
             <p>
@@ -336,6 +458,14 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function scrollToResults() {
+            document.getElementById('results').scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    </script>
 </body>
 
 </html>
