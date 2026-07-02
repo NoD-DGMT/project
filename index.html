@@ -306,11 +306,12 @@
                 detection efficiency, we introduce a diversity-guided selection strategy that actively selects test
                 cases exploring different violation categories, avoiding redundant evaluations while ensuring
                 comprehensive diversity coverage.
-                Extensive experiments on the AI2-THOR simulator with four state-of-the-art planning models demonstrate
-                that NoD-DGMT achieves violation detection rates of 31.9% on average, with our diversity-guided filter
-                improving rates by 4.3% and diversity scores by 3.3 on average. NoD-DGMT significantly outperforms six
-                baseline methods, with 16.8% relative improvement over the best baseline, and demonstrates consistent
-                superiority across different model architectures and task complexities.
+                Extensive experiments on the AI2-THOR simulator with four state-of-the-art planning models show that
+                NoD-DGMT achieves an average violation detection rate of 31.9%, a 16.8% relative improvement over the
+                strongest of seven baselines, while the diversity-guided filter further improves detection by 4.3% and
+                diversity by 3.3 cluster pairs on average, at only about 5% computational overhead. In addition,
+                NoD-DGMT remains effective under sensor noise and actuator latency, and generalizes to the outdoor
+                MetaUrban simulator, confirming its robustness and cross-domain applicability.
             </p>
         </div>
 
@@ -322,7 +323,7 @@
                 and violation detection. The overall architecture is shown below.
             </p>
             <div class="figure-container">
-                <img src="figs/framework.png"
+                <img src="figs/framework-new.png"
                     alt="Overall framework of our diversity-guided metamorphic testing approach">
                 <figcaption>Figure 1: Overall framework of our diversity-guided metamorphic testing approach
                 </figcaption>
@@ -373,7 +374,7 @@
             <h2>Results</h2>
             <p>
                 We conduct experiments covering three categories (i.e., property-based testing, random testing, and
-                traditional MT) and six representative baselines.
+                traditional MT) and seven representative baselines.
             </p>
             <table class="results-table">
                 <thead>
@@ -386,6 +387,7 @@
                         <th>RT-NAI</th>
                         <th>MT-Transform</th>
                         <th>MT-Obstacle</th>
+                        <th>MT-Synonym</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -398,6 +400,7 @@
                         <td>0.0%</td>
                         <td>19.8%</td>
                         <td>14.1%</td>
+                        <td>18.3%</td>
                     </tr>
                     <tr>
                         <td><strong>SigLIP</strong></td>
@@ -408,6 +411,7 @@
                         <td>0.0%</td>
                         <td>26.4%</td>
                         <td>17.5%</td>
+                        <td>13.8%</td>
                     </tr>
                     <tr>
                         <td><strong>SigLIP-Nav</strong></td>
@@ -418,6 +422,7 @@
                         <td>0.0%</td>
                         <td>28.9%</td>
                         <td>25.2%</td>
+                        <td>21.4%</td>
                     </tr>
                     <tr>
                         <td><strong>SigLIP-Det</strong></td>
@@ -428,6 +433,7 @@
                         <td>12.7%</td>
                         <td>33.9%</td>
                         <td>24.3%</td>
+                        <td>22.6%</td>
                     </tr>
                     <tr style="background-color: #f0f8ff;">
                         <td><strong>Average</strong></td>
@@ -438,6 +444,7 @@
                         <td>3.2%</td>
                         <td>27.3%</td>
                         <td>20.3%</td>
+                        <td>19.0%</td>
                     </tr>
                 </tbody>
             </table>
@@ -447,13 +454,24 @@
             <h2>Case Study Examples</h2>
             <p>
                 The following examples demonstrate how our framework detects different types of non-optimal decisions
-                across various mutation scenarios.
+                across various mutation scenarios in AI2-THOR.
             </p>
             <div class="figure-container">
                 <img src="figs/case_v5.png"
                     alt="Case study examples showing violation detection across different mutation types">
                 <figcaption>Figure 3: Case study examples showing violation detection across different mutation types
                 </figcaption>
+            </div>
+
+            <p>
+                NoD-DGMT generalizes to MetaUrban, an outdoor simulator with continuous control. Below, the PPO
+                planner's source path takes an unnecessary detour, while the follow-up path is noticeably shorter.
+            </p>
+            <div class="figure-container">
+                <img src="figs/urban_vis2.png"
+                    alt="A non-optimal decision of the PPO planner detected by NoD-DGMT in MetaUrban">
+                <figcaption>Figure 4: A NoD detected for the PPO planner in MetaUrban — (a) source path with detour,
+                    (b) third-person view during detour, (c) shorter follow-up path.</figcaption>
             </div>
         </div>
     </div>
